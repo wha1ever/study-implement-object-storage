@@ -1,7 +1,7 @@
 package heartbeat
 
 import (
-	"lib/rabbitmq"
+	"../../../src/lib/rabbitmq"
 	"os"
 	"strconv"
 	"sync"
