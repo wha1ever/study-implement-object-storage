@@ -1,10 +1,10 @@
 package objects
 
 import (
+	"../../../src/lib/objectstream"
 	"../locate"
 	"fmt"
 	"io"
-	"lib/objectstream"
 )
 
 func getStream(object string) (io.Reader, error) {

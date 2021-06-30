@@ -1,9 +1,9 @@
 package objects
 
 import (
+	"../../../src/lib/objectstream"
 	"../heartbeat"
 	"fmt"
-	"lib/objectstream"
 )
 
 func putStream(object string) (*objectstream.PutStream, error) {

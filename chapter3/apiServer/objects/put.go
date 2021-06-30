@@ -1,8 +1,8 @@
 package objects
 
 import (
-	"lib/es"
-	"lib/utils"
+	"../../../src/lib/es"
+	"../../../src/lib/utils"
 	"log"
 	"net/http"
 	"net/url"
