@@ -2,7 +2,7 @@ package versions
 
 import (
 	"encoding/json"
-	"lib/es"
+	"../../../src/lib/es"
 	"log"
 	"net/http"
 	"strings"

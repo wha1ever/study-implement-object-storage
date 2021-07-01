@@ -2,7 +2,7 @@ package objects
 
 import (
 	"io"
-	"lib/es"
+	"../../../src/lib/es"
 	"log"
 	"net/http"
 	"net/url"

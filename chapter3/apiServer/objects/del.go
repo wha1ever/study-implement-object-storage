@@ -1,7 +1,7 @@
 package objects
 
 import (
-	"lib/es"
+	"../../../src/lib/es"
 	"log"
 	"net/http"
 	"strings"
