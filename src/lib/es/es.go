@@ -71,20 +71,20 @@ func GetMetadata(name string, version int) (Metadata, error) {
 	return getMetadata(name, version)
 }
 
-func PutMetadata(name string, version int, size int64, hash string) error {
+func PutMetadata(name string, version int, size int64, hash string, contentType string) error {
 	doc := fmt.Sprintf(`{"name":"%s","version":%d,"size":%d,"hash":"%s"}`,
 		name, version, size, hash)
 	client := http.Client{}
 	url := fmt.Sprintf("http://%s/metadata/objects/%s_%d?op_type=create",
 		os.Getenv("ES_SERVER"), name, version)
 	request, _ := http.NewRequest("PUT", url, strings.NewReader(doc))
-	request.Header.Add("Content-Type","application/json")
+	request.Header.Add("Content-Type",contentType)
 	r, e := client.Do(request)
 	if e != nil {
 		return e
 	}
 	if r.StatusCode == http.StatusConflict {
-		return PutMetadata(name, version+1, size, hash)
+		return PutMetadata(name, version+1, size, hash,contentType)
 	}
 	if r.StatusCode != http.StatusCreated {
 		result, _ := ioutil.ReadAll(r.Body)
@@ -93,12 +93,12 @@ func PutMetadata(name string, version int, size int64, hash string) error {
 	return nil
 }
 
-func AddVersion(name, hash string, size int64) error {
+func AddVersion(name, hash string, size int64, contentType string) error {
 	version, e := SearchLatestVersion(name)
 	if e != nil {
 		return e
 	}
-	return PutMetadata(name, version.Version+1, size, hash)
+	return PutMetadata(name, version.Version+1, size, hash, contentType)
 }
 
 func SearchAllVersions(name string, from, size int) ([]Metadata, error) {

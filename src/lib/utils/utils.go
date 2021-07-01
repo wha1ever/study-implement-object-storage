@@ -33,6 +33,10 @@ func GetHashFromHeader(h http.Header) string {
 	return digest[8:]
 }
 
+func GetContentTypeFromHeader(h http.Header) string{
+	return  h.Get("content-type")
+}
+
 func GetSizeFromHeader(h http.Header) int64 {
 	size, _ := strconv.ParseInt(h.Get("content-length"), 0, 64)
 	return size

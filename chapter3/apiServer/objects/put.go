@@ -30,7 +30,8 @@ func put(w http.ResponseWriter, r *http.Request) {
 
 	name := strings.Split(r.URL.EscapedPath(), "/")[2]
 	size := utils.GetSizeFromHeader(r.Header)
-	e = es.AddVersion(name, hash, size)
+	contentType := utils.GetContentTypeFromHeader(r.Header)
+	e = es.AddVersion(name, hash, size, contentType)
 	if e != nil {
 		log.Println(e)
 		w.WriteHeader(http.StatusInternalServerError)
