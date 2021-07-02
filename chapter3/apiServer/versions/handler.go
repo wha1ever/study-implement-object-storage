@@ -1,8 +1,8 @@
 package versions
 
 import (
-	"encoding/json"
 	"../../../src/lib/es"
+	"encoding/json"
 	"log"
 	"net/http"
 	"strings"
@@ -25,6 +25,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 		for i := range metas {
+			log.Println(metas[i])
 			b, _ := json.Marshal(metas[i])
 			w.Write(b)
 			w.Write([]byte("\n"))
